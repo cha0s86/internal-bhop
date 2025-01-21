@@ -1,0 +1,1 @@
+g++ -o .\build\main.dll main.cpp -DBUILD_LIB -shared
