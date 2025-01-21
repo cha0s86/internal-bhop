@@ -45,10 +45,10 @@ void BunnyHop(const HMODULE instance) noexcept
 
 		const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_fFlags);
 
-			// on ground check
-			(flags & (1 << 0)) ?
-				*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537: // force jump
-				*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256; // reset
+		// on ground check
+		(flags & (1 << 0)) ?
+			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537: // force jump
+			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256; // reset
 	}
 
 	// uninject
