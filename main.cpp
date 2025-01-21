@@ -19,7 +19,7 @@ namespace offset
 // hack fn
 void BunnyHop(const HMODULE instance) noexcept
 {
-	const auto client = reinterpret_cast<std::uintptr_t>(GetModuleHandleA("client.dll"));
+	const auto client = reinterpret_cast<std::uintptr_t>(GetModuleHandle("client.dll"));
 
 	// hack loop
 	while (!GetAsyncKeyState(VK_END))
