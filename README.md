@@ -1,5 +1,5 @@
 # Tietoa
-Kliinit CS2 Bhop koodit ja sillee.
+Kliinit CS2 Bhop koodit.
 
 ## Asennus
 - Kloonaa repositorio
