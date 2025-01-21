@@ -57,7 +57,6 @@ void BunnyHop(const HMODULE instance) noexcept
 		if (GetAsyncKeyState(VK_SPACE) < 0)
 		{
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537;
-			Sleep(10);
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256;
 		}
 	}
