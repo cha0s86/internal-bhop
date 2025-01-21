@@ -5,13 +5,15 @@
 
 namespace offset
 {
-	// client
-	constexpr std::ptrdiff_t dwLocalPlayer = 0xDB458C;
+	// Client offsets
+	// Can be
+	constexpr std::ptrdiff_t dwLocalPlayerPawn = 0x186BDF8;
 	constexpr std::ptrdiff_t dwForceJump = 0x527998C;
 
-	// player
-	constexpr std::ptrdiff_t m_iHealth = 0x100;
-	constexpr std::ptrdiff_t m_fFlags = 0x104;
+	// Player offsets
+	// Can be found from: https://github.com/a2x/cs2-dumper/blob/main/output/client_dll.hpp
+	constexpr std::ptrdiff_t m_iHealth = 0x344;
+	constexpr std::ptrdiff_t m_fFlags = 0x63;
 }
 
 // hack fn
