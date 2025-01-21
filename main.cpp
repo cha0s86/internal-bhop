@@ -31,7 +31,7 @@ void BunnyHop(const HMODULE instance) noexcept
 			continue;
 
 		// get local player
-		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client + offset::dwLocalPlayer);
+		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client + offset::dwLocalPlayerPawn);
 
 		// is valid
 		if (!localPlayer)
