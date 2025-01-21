@@ -27,8 +27,8 @@ void BunnyHop(const HMODULE instance) noexcept
 		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
 		// make sure space is pressed
-		if (!GetAsyncKeyState(VK_SPACE))
-			continue;
+		// if (!GetAsyncKeyState(VK_SPACE))
+		// 	continue;
 
 		// get local player
 		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client + offset::dwLocalPlayerPawn);
@@ -45,10 +45,18 @@ void BunnyHop(const HMODULE instance) noexcept
 
 		const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_fFlags);
 
-		// on ground
-		(flags & (1 << 0)) ?
-			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 6 : // force jump
-			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 4; // reset
+		/*
+			// on ground check
+			(flags & (1 << 0)) ?
+				*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 6: // force jump
+				*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 4; // reset
+		*/
+
+		if (GetAsyncKeyState(VK_SPACE) && flags & (1 << 0)) {
+			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537;
+ 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256;
+		}
+
 	}
 
 	// uninject
