@@ -6,7 +6,7 @@
 namespace offset
 {
 	// Client offsets
-	// Can be
+	// Can be found from: https://github.com/a2x/cs2-dumper/blob/main/output/offsets.hpp
 	constexpr std::ptrdiff_t dwLocalPlayerPawn = 0x186BDF8;
 	constexpr std::ptrdiff_t dwForceJump = 0x527998C;
 
