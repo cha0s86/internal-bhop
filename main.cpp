@@ -8,12 +8,13 @@ namespace offset
 {
 	// Client offsets
 	// Can be found from: https://github.com/a2x/cs2-dumper/blob/main/output/offsets.hpp
-	constexpr std::ptrdiff_t dwLocalPlayerPawn = 0x186BDF8;
-	constexpr std::ptrdiff_t dwForceJump = 0x527998C;
+	constexpr std::ptrdiff_t dwLocalPlayerPawn = 0x186DDE8;
+	constexpr std::ptrdiff_t dwForceJump = 0x1866B20; // found from buttons.hpp
 
 	// Player offsets
 	// Can be found from: https://github.com/a2x/cs2-dumper/blob/main/output/client_dll.hpp
-	constexpr std::ptrdiff_t m_iHealth = 0x344;
+	constexpr std::ptrdiff_t m_iHealth = 0x344
+;
 	constexpr std::ptrdiff_t m_fFlags = 0x63;
 }
 
@@ -49,7 +50,6 @@ void BunnyHop(const HMODULE instance) noexcept
 		// on ground check
 		if (flags & (1 << 0)) {
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537; // force jump
-			std::this_thread::sleep_for(std::chrono::milliseconds(10));
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256; // reset
 		}
 	}
