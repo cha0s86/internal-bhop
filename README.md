@@ -5,7 +5,7 @@ Kliinit CS2 Bhop koodit.
 - Lataa tiedostot zip tiedostona
 - Pura zip tiedosto jonnekin
 - Varmista että peli on päällä
-- Käytä injector kansion injektoria ja valitse bhops.dll
+- Käytä injector kansion injektoria ja valitse builds kansiosta bhops.dll
 - Varmista että injektoit kun peli on windowed tilassa
 - Nauti :D
 
