@@ -17,37 +17,14 @@ namespace offset
 	constexpr std::ptrdiff_t m_fFlags = 0x63; 	// Found in client_dll.hpp
 }
 
-// hack fn
+// Hack function
 void BunnyHop(const HMODULE instance) noexcept
 {
 	const auto client = reinterpret_cast<std::uintptr_t>(GetModuleHandleA("client.dll"));
 
-	// hack loop
+	// Hack loop
 	while (!GetAsyncKeyState(VK_END))
 	{
-		// If space is not pressed
-		if (!GetAsyncKeyState(VK_SPACE)) {
-		 	continue;
-		}
-
-		/*
-		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client + offset::dwLocalPlayerPawn);
-		
-		// If no local player
-		if (!localPlayer) {
-			continue;
-		}
-
-		const auto health = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_iHealth);
-
-		// If no health
-		if (!health) {
-			continue;
-		}
-
-		const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_fFlags);
-		*/
-
 		if (GetAsyncKeyState(VK_SPACE)) {
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537;
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
@@ -57,11 +34,11 @@ void BunnyHop(const HMODULE instance) noexcept
 		std::this_thread::sleep_for(std::chrono::milliseconds(2));
 	}
 
-	// uninject
+	// Uninject
 	FreeLibraryAndExitThread(instance, 0);
 }
 
-// entry point
+// Entry point
 int __stdcall DllMain(
 	const HMODULE instance,
 	const std::uintptr_t reason,
@@ -73,7 +50,7 @@ int __stdcall DllMain(
 	{
 		DisableThreadLibraryCalls(instance);
 
-		// create hack thread
+		// Create hack thread
 		const auto thread = CreateThread(
 			nullptr,
 			0,
