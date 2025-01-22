@@ -25,12 +25,13 @@ void BunnyHop(const HMODULE instance) noexcept
 	// Hack loop
 	while (!GetAsyncKeyState(VK_END))
 	{
-
+		
+		/*
 		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client+offset::dwLocalPlayerPawn);
-
 		const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer+offset::m_fFlags);
+		*/
 
-		if (GetAsyncKeyState(VK_SPACE) && flags & 1) {
+		if (GetAsyncKeyState(VK_SPACE) /* && flags & 1 */) {
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537;
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256;
