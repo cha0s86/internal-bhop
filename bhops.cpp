@@ -38,14 +38,12 @@ void BunnyHop(const HMODULE instance) noexcept
 		}
 
 		/*
-
 		const auto health = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_iHealth);
 
 		// If no health
 		if (!health) {
 			continue;
 		}
-
 		*/
 
 		const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_fFlags);
