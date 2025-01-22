@@ -30,9 +30,9 @@ void BunnyHop(const HMODULE instance) noexcept
 		 	continue;
 		}
 
+		/*
 		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client + offset::dwLocalPlayerPawn);
 		
-		/*
 		// If no local player
 		if (!localPlayer) {
 			continue;
@@ -44,12 +44,13 @@ void BunnyHop(const HMODULE instance) noexcept
 		if (!health) {
 			continue;
 		}
-		*/
+		
 
 		const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_fFlags);
+		*/
 
 		// on ground check
-		if (GetAsyncKeyState(VK_SPACE) && (flags & (1 << 0))) {
+		if (GetAsyncKeyState(VK_SPACE)) {
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537; // force jump
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256; // reset
