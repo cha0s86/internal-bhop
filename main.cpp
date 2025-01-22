@@ -29,14 +29,14 @@ void BunnyHop(const HMODULE instance) noexcept
 	while (!GetAsyncKeyState(VK_END))
 	{
 		// If space is not pressed
-		// if (!GetAsyncKeyState(VK_SPACE))
-		// 	continue;
+		if (!GetAsyncKeyState(VK_SPACE)) {
+		 	continue;
+		}
 
 		// If no local player
 		if (!localPlayer) {
 			continue;
 		}
-
 
 		// If no health
 		if (!health) {
