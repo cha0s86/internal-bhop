@@ -9,12 +9,11 @@ namespace offset
 	// Client offsets
 	// Can be found from: https://github.com/a2x/cs2-dumper/blob/main/output/offsets.hpp
 	constexpr std::ptrdiff_t dwLocalPlayerPawn = 0x186DDE8;
-	constexpr std::ptrdiff_t dwForceJump = 0x1866B20; // found from buttons.hpp
+	constexpr std::ptrdiff_t dwForceJump = 0x1866B20;
 
 	// Player offsets
 	// Can be found from: https://github.com/a2x/cs2-dumper/blob/main/output/client_dll.hpp
-	constexpr std::ptrdiff_t m_iHealth = 0x344
-;
+	constexpr std::ptrdiff_t m_iHealth = 0x344;
 	constexpr std::ptrdiff_t m_fFlags = 0x63;
 }
 
@@ -22,35 +21,36 @@ namespace offset
 void BunnyHop(const HMODULE instance) noexcept
 {
 	const auto client = reinterpret_cast<std::uintptr_t>(GetModuleHandleA("client.dll"));
+	const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client + offset::dwLocalPlayerPawn);
+	const auto health = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_iHealth);
+	const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_fFlags);
 
 	// hack loop
 	while (!GetAsyncKeyState(VK_END))
 	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(1));
+		// If space is not pressed
+		// if (!GetAsyncKeyState(VK_SPACE))
+		// 	continue;
 
-		// make sure space is pressed
-		if (!GetAsyncKeyState(VK_SPACE))
+		// If no local player
+		if (!localPlayer) {
 			continue;
+		}
 
-		// get local player
-		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client + offset::dwLocalPlayerPawn);
 
-		// is valid
-		if (!localPlayer)
+		// If no health
+		if (!health) {
 			continue;
-
-		const auto health = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_iHealth);
-
-		// is alive
-		if (!health)
-			continue;
-
-		const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_fFlags);
+		}
 
 		// on ground check
-		(flags & (1 << 0)) ? 
-			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537: // force jump
+		if (GetAsyncKeyState(VK_SPACE)) {
+			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537; // force jump
+			std::this_thread::sleep_for(std::chrono::milliseconds(10));
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256; // reset
+		}
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
 
 	// uninject
