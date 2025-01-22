@@ -1,1 +1,1 @@
-g++ -o .\build\bhops.dll main.cpp -DBUILD_LIB -shared
+g++ -o .\build\bhops.dll bhops.cpp -DBUILD_LIB -shared

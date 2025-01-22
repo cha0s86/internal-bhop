@@ -30,7 +30,7 @@ void BunnyHop(const HMODULE instance) noexcept
 	{
 		// If space is not pressed
 		if (!GetAsyncKeyState(VK_SPACE)) {
-		 	continue;
+			continue;
 		}
 
 		// If no local player
@@ -46,7 +46,6 @@ void BunnyHop(const HMODULE instance) noexcept
 		// on ground check
 		if (GetAsyncKeyState(VK_SPACE)) {
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537; // force jump
-			std::this_thread::sleep_for(std::chrono::milliseconds(10));
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256; // reset
 		}
 
