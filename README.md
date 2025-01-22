@@ -9,7 +9,7 @@ Kliinit CS2 Bhop koodit.
 - Varmista että injektoit kun peli on windowed tilassa
 - Nauti :D
 
-## Asennus (Lähdekoodista)
+## Asenna vaihtoehtoisesti (Lähdekoodista)
 - Kloonaa repositorio
 - Varmista että offsetit ovat ajantasalla.
 - Rakenna g++:lla (build.bat)
