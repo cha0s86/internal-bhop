@@ -30,8 +30,7 @@ void BunnyHop(const HMODULE instance) noexcept
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256;
 		}
-
-		std::this_thread::sleep_for(std::chrono::milliseconds(2));
+		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
 
 	// Uninject
