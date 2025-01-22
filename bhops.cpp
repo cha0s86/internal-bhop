@@ -37,8 +37,6 @@ void BunnyHop(const HMODULE instance) noexcept
 			continue;
 		}
 
-		/*
-
 		const auto health = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_iHealth);
 
 		// If no health
@@ -46,14 +44,12 @@ void BunnyHop(const HMODULE instance) noexcept
 			continue;
 		}
 
-		*/
-
 		const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_fFlags);
 
 		// on ground check
-		if (GetAsyncKeyState(VK_SPACE) && flags & (1 << 0)) {
+		if (GetAsyncKeyState(VK_SPACE) && (flags & (1 << 0))) {
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537; // force jump
-			std::this_thread::sleep_for(std::chrono::milliseconds(10));
+			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256; // reset
 		}
 
