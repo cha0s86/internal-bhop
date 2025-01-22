@@ -1,11 +1,18 @@
 # Tietoa
 Kliinit CS2 Bhop koodit.
 
-## Asennus
+## Käyttö
+- Lataa tiedostot zip tiedostona
+- Pura zip tiedosto jonnekin
+- Varmista että peli on päällä
+- Käytä injector kansion injektoria ja valitse bhops.dll
+- Nauti :D
+
+## Asennus (Lähdekoodista)
 - Kloonaa repositorio
 - Varmista että offsetit ovat ajantasalla.
 - Rakenna g++:lla (build.bat)
-- Injektoi cs2:seen
+- Injektoi
 - Nauti :D
 
 ## Tiedotus
