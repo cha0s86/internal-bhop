@@ -20,7 +20,7 @@ namespace offset
 // hack fn
 void BunnyHop(const HMODULE instance) noexcept
 {
-	const auto client = reinterpret_cast<std::uintptr_t>(GetModuleHandle("client.dll"));
+	const auto client = reinterpret_cast<std::uintptr_t>(GetModuleHandleA("client.dll"));
 
 	// hack loop
 	while (!GetAsyncKeyState(VK_END))
@@ -28,8 +28,8 @@ void BunnyHop(const HMODULE instance) noexcept
 		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
 		// make sure space is pressed
-		if (!GetAsyncKeyState(VK_SPACE))
-			continue;
+		// if (!GetAsyncKeyState(VK_SPACE))
+		//	continue;
 
 		// get local player
 		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client + offset::dwLocalPlayerPawn);
@@ -46,21 +46,21 @@ void BunnyHop(const HMODULE instance) noexcept
 
 		const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer + offset::m_fFlags);
 
-		/*
 		// on ground check
-		if (flags & (1 << 0)) {
+		if (GetAsyncKeyState(VK_SPACE)) {
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537; // force jump
-			Sleep(10);
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256; // reset
+		}
+
+		/*
+		if (GetAsyncKeyState(VK_SPACE) < 0 && flags & (1 << 0))
+		{
+			*(int*)(client + offset::dwForceJump) = 65537;
+			std::this_thread::sleep_for(std::chrono::milliseconds(5));
+			*(int*)(client + offset::dwForceJump) = 256;
 		}
 		*/
 
-		if (GetAsyncKeyState(VK_SPACE) < 0)
-		{
-			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537;
-			std::this_thread::sleep_for(std::chrono::milliseconds(5));
-			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256;
-		}
 	}
 
 	// uninject
