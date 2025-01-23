@@ -14,7 +14,7 @@ namespace offset
 	// Player offsets
 	// Can be found from: https://github.com/a2x/cs2-dumper/blob/main/output/client_dll.hpp
 	constexpr std::ptrdiff_t m_iHealth = 0x344; // Found in client_dll.hpp
-	constexpr std::ptrdiff_t m_fFlags = 0x63; 	// Found in client_dll.hpp
+	constexpr std::ptrdiff_t m_fFlags = 0x3EC; 	// Found in client_dll.hpp
 }
 
 // Hack function
@@ -25,7 +25,7 @@ void BunnyHop(const HMODULE instance) noexcept
 	// Hack loop
 	while (!GetAsyncKeyState(VK_END))
 	{
-		
+
 		/*
 		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client+offset::dwLocalPlayerPawn);
 		const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer+offset::m_fFlags);
