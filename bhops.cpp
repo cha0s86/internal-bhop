@@ -25,10 +25,9 @@ void BunnyHop(const HMODULE instance) noexcept
 	// Hack loop
 	while (!GetAsyncKeyState(VK_END))
 	{
-		// Get local player
+
 		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client+offset::dwLocalPlayerPawn);
-		
-		// Get flags variable
+
 		const auto flags = localPlayer+offset::m_fFlags;
 
 		bool OnGround = flags & (1 << 0);
