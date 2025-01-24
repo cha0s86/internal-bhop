@@ -26,29 +26,22 @@ void BunnyHop(const HMODULE instance) noexcept
 	while (!GetAsyncKeyState(VK_END))
 	{
 		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client+offset::dwLocalPlayerPawn);
-
 		const auto flags = localPlayer+offset::m_fFlags;
-
 		bool OnGround = flags & (1 << 0);
 
-		if (GetAsyncKeyState(VK_SPACE) && !OnGround) {
+		if (OnGround && GetAsyncKeyState(VK_SPACE)) {
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537;
-		} else {
+			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256;
 		}
 	}
-
 	// Uninject
 	FreeLibraryAndExitThread(instance, 0);
 }
 
 // Entry point
-int __stdcall DllMain(
-	const HMODULE instance,
-	const std::uintptr_t reason,
-	const void* reserved
-)
-{
+int __stdcall DllMain(const HMODULE instance, const std::uintptr_t reason, const void* reserved) {
+	
 	// DLL_PROCESS_ATTACH
 	if (reason == 1)
 	{
