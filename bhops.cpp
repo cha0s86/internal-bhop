@@ -14,7 +14,7 @@ namespace offset
 	// Player offsets
 	// Can be found from: https://github.com/a2x/cs2-dumper/blob/main/output/client_dll.hpp
 	constexpr std::ptrdiff_t m_iHealth = 0x344; // Found in client_dll.hpp
-	constexpr std::ptrdiff_t m_fFlags = 0x3EC; 	// Found in client_dll.hpp
+	constexpr std::ptrdiff_t m_fFlags = 0x36C; 	// Found in client_dll.hpp
 }
 
 // Hack function
