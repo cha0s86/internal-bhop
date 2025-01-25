@@ -31,9 +31,9 @@ void BunnyHop(const HMODULE instance) noexcept
 
 		if (OnGround && GetAsyncKeyState(VK_SPACE)) {
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537;
+			std::this_thread::sleep_for(std::chrono::milliseconds(2));
 			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256;
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
 	// Uninject
 	FreeLibraryAndExitThread(instance, 0);
