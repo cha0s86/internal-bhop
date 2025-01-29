@@ -11,8 +11,7 @@ Clean CS2 bhop program.
 
 ## Building from source
 - Clone the repository
-- Confirm you have g++ installed.
-- Build with (build.bat)
+- Build with latest offsets: run (build.bat) (Requires g++ installed on machine)
 - Inject the dll when game is on windowed mode.
 - Enjoy :D
 
@@ -32,8 +31,7 @@ Kliinit CS2 Bhop koodit.
 
 ## Asennus lähdekoodista
 - Kloonaa repositorio
-- Varmista että "g++" ohjelma on asennettu.
-- Kokoa ohjelmalla: (build.bat)
+- Kokoa uusimmilla offseteillä: aja (build.bat) (Vaatii että g++ on asennettu koneelle)
 - Injektoi dll kun peli on windowed tilassa
 - Nauti :D
 
