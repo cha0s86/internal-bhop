@@ -1,21 +1,11 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <offsets/offsets.hpp>
+#include <offsets/buttons.hpp>
+#include <offsets/client_dll.hpp>
 #include <cstdint>
 #include <chrono>
 #include <thread>
-
-namespace offsets
-{
-	// Client offsets
-	// Can be found from: https://github.com/a2x/cs2-dumper/blob/main/output/offsets.hpp
-	constexpr std::ptrdiff_t dwLocalPlayerPawn = 0x186DDE8; // Found in offsets.hpp
-	constexpr std::ptrdiff_t dwForceJump = 0x1866B20; 		// Found in buttons.hpp
-
-	// Player offsets
-	// Can be found from: https://github.com/a2x/cs2-dumper/blob/main/output/client_dll.hpp
-	constexpr std::ptrdiff_t m_iHealth = 0x344; // Found in client_dll.hpp
-	constexpr std::ptrdiff_t m_fFlags = 0x36C; 	// Found in client_dll.hpp
-}
 
 // Hack function
 void BunnyHop(const HMODULE instance) noexcept
@@ -25,14 +15,14 @@ void BunnyHop(const HMODULE instance) noexcept
 	// Hack loop
 	while (!GetAsyncKeyState(VK_END))
 	{
-		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client+offsets::dwLocalPlayerPawn);
-		const auto flags = localPlayer+offsets::m_fFlags;
+		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client+cs2_dumper::offsets::client_dll::dwLocalPlayerPawn);
+		const auto flags = localPlayer+cs2_dumper::schemas::client_dll::C_BaseEntity::m_fFlags;
 		bool OnGround = flags & (1 << 0);
 
 		if (OnGround && GetAsyncKeyState(VK_SPACE)) {
-			*reinterpret_cast<std::uintptr_t*>(client + offsets::dwForceJump) = 65537;
+			*reinterpret_cast<std::uintptr_t*>(client + cs2_dumper::buttons::jump) = 65537;
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
-			*reinterpret_cast<std::uintptr_t*>(client + offsets::dwForceJump) = 256;
+			*reinterpret_cast<std::uintptr_t*>(client + cs2_dumper::buttons::jump) = 256;
 		}
 	}
 	// Uninject
