@@ -24,6 +24,7 @@ void BunnyHop(const HMODULE instance) noexcept
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 			*reinterpret_cast<std::uintptr_t*>(client + cs2_dumper::buttons::jump) = 256;
 		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
 	// Uninject
 	FreeLibraryAndExitThread(instance, 0);
