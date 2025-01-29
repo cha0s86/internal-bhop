@@ -4,7 +4,7 @@
 #include <chrono>
 #include <thread>
 
-namespace offset
+namespace offsets
 {
 	// Client offsets
 	// Can be found from: https://github.com/a2x/cs2-dumper/blob/main/output/offsets.hpp
@@ -25,14 +25,14 @@ void BunnyHop(const HMODULE instance) noexcept
 	// Hack loop
 	while (!GetAsyncKeyState(VK_END))
 	{
-		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client+offset::dwLocalPlayerPawn);
-		const auto flags = localPlayer+offset::m_fFlags;
+		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client+offsets::dwLocalPlayerPawn);
+		const auto flags = localPlayer+offsets::m_fFlags;
 		bool OnGround = flags & (1 << 0);
 
 		if (OnGround && GetAsyncKeyState(VK_SPACE)) {
-			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 65537;
+			*reinterpret_cast<std::uintptr_t*>(client + offsets::dwForceJump) = 65537;
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
-			*reinterpret_cast<std::uintptr_t*>(client + offset::dwForceJump) = 256;
+			*reinterpret_cast<std::uintptr_t*>(client + offsets::dwForceJump) = 256;
 		}
 	}
 	// Uninject
