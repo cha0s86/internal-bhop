@@ -1,8 +1,8 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
-#include <offsets/offsets.hpp>
-#include <offsets/buttons.hpp>
-#include <offsets/client_dll.hpp>
+#include <offsets/offsets.cpp>
+#include <offsets/buttons.cpp>
+#include <offsets/client_dll.cpp>
 #include <cstdint>
 #include <chrono>
 #include <thread>
