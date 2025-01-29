@@ -5,8 +5,8 @@ Clean CS2 bhop program.
 - Download files as zip
 - Extract zip file
 - Check that the game is on
-- Use the injector.exe and inject your bhops.dll
 - Confirm that the game is in windowed mode
+- Use the injector.exe and inject your bhops.dll
 - Enjoy :D
 
 ## Building from source
@@ -25,8 +25,8 @@ Kliinit CS2 Bhop koodit.
 - Lataa tiedostot zip tiedostona
 - Pura zip tiedosto jonnekin
 - Varmista että peli on päällä
-- Käytä injector kansion injektoria ja valitse builds kansiosta bhops.dll
 - Varmista että injektoit kun peli on windowed tilassa
+- Käytä injector kansion injektoria ja valitse builds kansiosta bhops.dll
 - Nauti :D
 
 ## Asennus lähdekoodista
