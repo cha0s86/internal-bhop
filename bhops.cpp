@@ -6,7 +6,7 @@
 
 namespace offsets {
 	constexpr std::ptrdiff_t dwLocalPlayerPawn = 0x187CED8;
-	constexpr std::ptrdiff_t forceJump = 0x1875C20;
+	constexpr std::ptrdiff_t jump = 0x1875C20;
 
 	constexpr std::ptrdiff_t m_iHealth = 0x344;
 	constexpr std::ptrdiff_t m_fFlags = 0x63;
@@ -47,9 +47,8 @@ void BunnyHop(const HMODULE instance) noexcept
 
 		// on ground
 		if (GetAsyncKeyState(VK_SPACE)) {
-			*reinterpret_cast<std::uintptr_t*>(client + offsets::forceJump) = 65537; // force jump
-			std::this_thread::sleep_for(std::chrono::microseconds(1000));
-			*reinterpret_cast<std::uintptr_t*>(client + offsets::forceJump) = 256; // reset
+			mem.write<int32_t>(client + jump, 65537); // Write to dwForceJump
+			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 		}
 
 	}
