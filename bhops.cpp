@@ -1,5 +1,6 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <memory.h>
 #include <cstdint>
 #include <chrono>
 #include <thread>
@@ -43,12 +44,13 @@ void BunnyHop(const HMODULE instance) noexcept
 			continue;
 		}
 
-		const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer + offsets::m_fFlags);
+		const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer+offsets::m_fFlags);
+		bool OnGround = flags & (1 << 0);
 
-		// on ground
-		if (GetAsyncKeyState(VK_SPACE)) {
-			mem.write<int32_t>(client + jump, 65537); // Write to dwForceJump
+		if (OnGround && GetAsyncKeyState(VK_SPACE)) {
+			*reinterpret_cast<std::uintptr_t*>(client + offsets::jump) = 65537;
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
+			*reinterpret_cast<std::uintptr_t*>(client + offsets::jump) = 256;
 		}
 
 	}
