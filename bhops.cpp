@@ -20,7 +20,7 @@ void BunnyHop(const HMODULE instance) noexcept
 
 		const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client+cs2_dumper::offsets::client_dll::dwLocalPlayerPawn);
 		const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer+cs2_dumper::schemas::client_dll::CEffectData::m_fFlags);
-		bool OnGround = flags == 65665 || flags == 65667;
+		bool OnGround = flags & (1 << 0);
 
 		if (OnGround && GetAsyncKeyState(VK_SPACE)) {
 			*reinterpret_cast<std::uintptr_t*>(client + cs2_dumper::buttons::jump) = 65537;
