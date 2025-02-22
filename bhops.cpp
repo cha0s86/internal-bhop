@@ -1,32 +1,24 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
-#include <cstdint>
-#include <offsets/offsets.hpp>
-#include <offsets/buttons.hpp>
-#include <offsets/client_dll.hpp>
-#include <chrono>
 #include <thread>
+#include <offsets/buttons.hpp>
+
+// Client
+const auto client = reinterpret_cast<std::uintptr_t>(GetModuleHandleA("client.dll"));
 
 // Hack function
-void BunnyHop(const HMODULE instance) noexcept
-{
-	const auto client = reinterpret_cast<std::uintptr_t>(GetModuleHandleA("client.dll"));
-	const auto localPlayer = *reinterpret_cast<std::uintptr_t*>(client+cs2_dumper::offsets::client_dll::dwLocalPlayerPawn);
-	// const auto flags = *reinterpret_cast<std::int32_t*>(localPlayer+cs2_dumper::schemas::client_dll::CEffectData::m_fFlags);
-
+void BunnyHop(const HMODULE instance) {
+	
 	// Hack loop
 	while (!GetAsyncKeyState(VK_END))
 	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(1));
-
-		//bool OnGround = flags & (1 << 0);
-
 		if (GetAsyncKeyState(VK_SPACE)) {
 			*reinterpret_cast<std::uintptr_t*>(client + cs2_dumper::buttons::jump) = 65537;
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 			*reinterpret_cast<std::uintptr_t*>(client + cs2_dumper::buttons::jump) = 256;
 		}
 	}
+	
 	// Uninject
 	FreeLibraryAndExitThread(instance, 0);
 }
@@ -54,5 +46,5 @@ int __stdcall DllMain(const HMODULE instance, const std::uintptr_t reason, const
 		}
 	}
 
-	return 1;
+	return 1
 }
