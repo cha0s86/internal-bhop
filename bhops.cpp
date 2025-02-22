@@ -46,5 +46,5 @@ int __stdcall DllMain(const HMODULE instance, const std::uintptr_t reason, const
 		}
 	}
 
-	return 1
+	return 1;
 }
