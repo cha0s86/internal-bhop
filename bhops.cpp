@@ -12,6 +12,7 @@ void BunnyHop(const HMODULE instance) {
 	// Hack loop
 	while (!GetAsyncKeyState(VK_END))
 	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 		if (GetAsyncKeyState(VK_SPACE)) {
 			*reinterpret_cast<std::uintptr_t*>(client + cs2_dumper::buttons::jump) = 65537;
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
